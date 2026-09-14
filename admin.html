@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LocalMatch Admin</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:#f5f7fb;color:#172033}nav{height:70px;background:#fff;border-bottom:1px solid #e5e9f0;display:flex;align-items:center;justify-content:space-between;padding:0 5%}.logo{font-size:21px;font-weight:800}.wrap{max-width:1200px;margin:35px auto;padding:0 20px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:25px 0}.stat,.panel{background:#fff;border:1px solid #e2e7ef;border-radius:14px;padding:20px}.stat b{font-size:28px;display:block}.table{overflow:auto}.lead{display:grid;grid-template-columns:110px 1fr 140px 130px 130px;gap:12px;padding:15px 0;border-bottom:1px solid #edf0f5;align-items:start}.head{font-size:12px;text-transform:uppercase;color:#7d8796;font-weight:700}.badge{display:inline-block;padding:5px 8px;border-radius:99px;background:#eef2f7;font-size:12px}.btn{border:1px solid #d3d9e4;background:#fff;padding:7px 9px;border-radius:7px;cursor:pointer}.empty{text-align:center;color:#7c8797;padding:40px}.error{color:#a52323}@media(max-width:800px){.stats{grid-template-columns:1fr 1fr}.lead{grid-template-columns:1fr}}
+</style></head>
+<body><nav><div class="logo">LocalMatch Admin</div><a href="index.html">Customer site</a></nav>
+<div class="wrap"><div class="top"><div><h1>Lead Dashboard</h1><p>Persistent cloud-backed leads.</p></div><button class="btn" onclick="loadLeads()">Refresh</button></div>
+<div class="stats"><div class="stat">Total leads<b id="total">0</b></div><div class="stat">New<b id="newCount">0</b></div><div class="stat">Qualified<b id="qualified">0</b></div><div class="stat">Sold<b id="sold">0</b></div></div>
+<div class="panel"><div id="message"></div><div class="table"><div class="lead head"><div>ID</div><div>Request</div><div>Location</div><div>Timeline</div><div>Status</div></div><div id="rows"></div></div></div></div>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+const SUPABASE_URL='YOUR_SUPABASE_URL'; const SUPABASE_ANON_KEY='YOUR_SUPABASE_ANON_KEY';
+const supabase=createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+async function loadLeads(){
+ const {data,error}=await supabase.from('leads').select('*').order('created_at',{ascending:false});
+ if(error){message.innerHTML='<p class="error">Database connection not configured or access denied.</p>';return}
+ total.textContent=data.length;newCount.textContent=data.filter(x=>x.status==='new').length;qualified.textContent=data.filter(x=>x.status==='qualified').length;sold.textContent=data.filter(x=>x.status==='sold').length;
+ rows.innerHTML=data.length?data.map(x=>`<div class="lead"><div><b>LM-${x.id.slice(0,8).toUpperCase()}</b><br><small>${new Date(x.created_at).toLocaleString()}</small></div><div>${esc(x.request)}<br><small>${esc(x.name)} • ${esc(x.phone)} • ${esc(x.email)}</small></div><div>${esc(x.zip)}<br>${esc(x.budget||'Budget not given')}</div><div>${esc(x.timeline)}</div><div><span class="badge">${x.status}</span><br><button class="btn" data-id="${x.id}">Advance</button></div></div>`).join(''):'<div class="empty">No leads yet.</div>';
+ document.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>advance(b.dataset.id));
+}
+async function advance(id){const {data}=await supabase.from('leads').select('status').eq('id',id).single();const next={new:'qualified',qualified:'sold',sold:'new'}[data.status];await supabase.from('leads').update({status:next}).eq('id',id);loadLeads()}
+function esc(v=''){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+loadLeads();
+</script></body></html>
