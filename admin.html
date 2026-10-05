@@ -42,9 +42,9 @@ nav{
 }
 
 .nav-link{
-  text-decoration:none;
   color:#4f46e5;
-  font-weight:600;
+  text-decoration:none;
+  font-weight:700;
 }
 
 .wrap{
@@ -77,23 +77,22 @@ p{
 label{
   display:block;
   font-weight:700;
-  margin:18px 0 7px;
+  margin:15px 0 7px;
 }
 
 input,
 select,
 textarea{
   width:100%;
+  padding:12px;
   border:1px solid #cfd6e2;
   border-radius:9px;
-  padding:12px;
-  font-size:16px;
+  font:inherit;
   background:#fff;
-  font-family:inherit;
 }
 
 textarea{
-  min-height:110px;
+  min-height:130px;
   resize:vertical;
 }
 
@@ -107,10 +106,10 @@ textarea:focus{
 .btn{
   border:1px solid #d3d9e4;
   background:#fff;
-  padding:9px 13px;
+  padding:9px 14px;
   border-radius:8px;
   cursor:pointer;
-  font-weight:600;
+  font-weight:700;
 }
 
 .btn:hover{
@@ -118,12 +117,12 @@ textarea:focus{
 }
 
 .primary{
-  background:#4f46e5;
-  color:#fff;
-  border-color:#4f46e5;
   width:100%;
   margin-top:20px;
   padding:13px;
+  background:#4f46e5;
+  color:#fff;
+  border-color:#4f46e5;
 }
 
 .primary:hover{
@@ -139,21 +138,21 @@ textarea:focus{
 }
 
 .error{
-  color:#991b1b;
-  background:#fef2f2;
-  border:1px solid #fecaca;
+  margin-top:15px;
   padding:12px;
   border-radius:8px;
-  margin-top:15px;
+  background:#fef2f2;
+  border:1px solid #fecaca;
+  color:#991b1b;
 }
 
 .success{
-  color:#166534;
-  background:#f0fdf4;
-  border:1px solid #bbf7d0;
+  margin-top:15px;
   padding:12px;
   border-radius:8px;
-  margin-top:15px;
+  background:#f0fdf4;
+  border:1px solid #bbf7d0;
+  color:#166534;
 }
 
 .stats{
@@ -170,14 +169,14 @@ textarea:focus{
   padding:20px;
 }
 
-.stat b{
-  font-size:28px;
-  display:block;
-  margin-top:5px;
-}
-
 .stat-label{
   color:#687386;
+}
+
+.stat b{
+  display:block;
+  font-size:28px;
+  margin-top:5px;
 }
 
 .toolbar{
@@ -188,14 +187,14 @@ textarea:focus{
 }
 
 .lead{
-  border:1px solid #e1e5ec;
-  border-radius:12px;
-  padding:20px;
-  margin-bottom:15px;
   background:#fff;
+  border:1px solid #dfe5ee;
+  border-radius:14px;
+  padding:22px;
+  margin-bottom:18px;
 }
 
-.lead-header{
+.lead-top{
   display:flex;
   justify-content:space-between;
   align-items:flex-start;
@@ -204,12 +203,12 @@ textarea:focus{
 
 .category{
   display:inline-block;
-  background:#eef2ff;
-  color:#3730a3;
   padding:5px 10px;
   border-radius:20px;
+  background:#eef2ff;
+  color:#3730a3;
   font-size:13px;
-  font-weight:700;
+  font-weight:800;
 }
 
 .status{
@@ -219,25 +218,30 @@ textarea:focus{
   background:#fef3c7;
   color:#92400e;
   font-size:13px;
-  font-weight:700;
+  font-weight:800;
+}
+
+.lead-id{
+  color:#7c8797;
+  font-size:12px;
+  margin-top:5px;
 }
 
 .request{
-  font-size:18px;
-  font-weight:700;
-  margin:14px 0;
+  font-size:19px;
+  font-weight:800;
+  margin:15px 0 20px;
 }
 
-.lead-details{
+.details{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-top:15px;
+  gap:18px;
 }
 
 .detail{
-  color:#4b5563;
   font-size:14px;
+  color:#4b5563;
 }
 
 .detail strong{
@@ -246,48 +250,49 @@ textarea:focus{
   margin-bottom:4px;
 }
 
-.notes-section{
-  margin-top:20px;
-  padding-top:20px;
-  border-top:1px solid #edf0f5;
+.notes-box{
+  margin-top:25px;
+  padding:20px;
+  border:2px solid #e0e7ff;
+  border-radius:12px;
+  background:#fafbff;
+}
+
+.notes-title{
+  margin:0 0 5px;
+  font-size:18px;
+  font-weight:800;
+}
+
+.notes-help{
+  margin:0 0 12px;
+  font-size:13px;
+  color:#687386;
 }
 
 .notes-grid{
   display:grid;
   grid-template-columns:1fr 220px;
-  gap:15px;
+  gap:18px;
 }
 
-.notes-label{
-  margin-top:0;
-}
-
-.lead-actions{
-  margin-top:18px;
+.notes-actions{
   display:flex;
   gap:10px;
+  margin-top:15px;
   flex-wrap:wrap;
 }
 
-.save-btn{
+.save-notes{
   background:#111827;
   color:#fff;
   border-color:#111827;
 }
 
-.save-btn:hover{
-  background:#1f2937;
-}
-
-.small{
-  font-size:12px;
-  color:#7c8797;
-}
-
 .empty{
   text-align:center;
-  color:#7c8797;
   padding:40px;
+  color:#7c8797;
 }
 
 @media(max-width:800px){
@@ -296,15 +301,15 @@ textarea:focus{
     grid-template-columns:1fr 1fr;
   }
 
-  .lead-details{
+  .details{
     grid-template-columns:1fr 1fr;
   }
 
-  .toolbar{
+  .notes-grid{
     grid-template-columns:1fr;
   }
 
-  .notes-grid{
+  .toolbar{
     grid-template-columns:1fr;
   }
 
@@ -316,19 +321,19 @@ textarea:focus{
     grid-template-columns:1fr;
   }
 
-  .lead-details{
+  .details{
     grid-template-columns:1fr;
   }
 
-  .lead-header{
+  .lead-top{
     flex-direction:column;
   }
 
 }
 
 </style>
-
 </head>
+
 
 <body>
 
@@ -372,25 +377,24 @@ textarea:focus{
     Sign in to manage LocalMatch customer leads.
   </p>
 
-  <label for="loginEmail">
+  <label>
     Email
   </label>
 
   <input
     id="loginEmail"
     type="email"
-    placeholder="Your email"
+    value=""
     autocomplete="email"
   >
 
-  <label for="loginPassword">
+  <label>
     Password
   </label>
 
   <input
     id="loginPassword"
     type="password"
-    placeholder="Your password"
     autocomplete="current-password"
   >
 
@@ -418,7 +422,9 @@ textarea:focus{
 
   <div class="card">
 
-    <h1>Lead Dashboard</h1>
+    <h1>
+      Lead Dashboard
+    </h1>
 
     <p>
       Manage your LocalMatch customer requests.
@@ -439,7 +445,6 @@ textarea:focus{
       <b id="total">0</b>
     </div>
 
-
     <div class="stat">
       <span class="stat-label">
         New
@@ -448,7 +453,6 @@ textarea:focus{
       <b id="newCount">0</b>
     </div>
 
-
     <div class="stat">
       <span class="stat-label">
         Qualified
@@ -456,7 +460,6 @@ textarea:focus{
 
       <b id="qualified">0</b>
     </div>
-
 
     <div class="stat">
       <span class="stat-label">
@@ -526,12 +529,6 @@ const SUPABASE_ANON_KEY =
   'sb_publishable_lGzDmYYU08rNJv_qHhKDhw__1qXsEWU';
 
 
-/*
-  IMPORTANT:
-  We use "supabaseClient" instead of "supabase"
-  so it does not conflict with the Supabase library.
-*/
-
 const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
@@ -539,44 +536,56 @@ const supabaseClient =
   );
 
 
-/* --------------------------------
-   ELEMENTS
--------------------------------- */
-
 const loginSection =
-  document.getElementById('loginSection');
+  document.getElementById(
+    'loginSection'
+  );
 
 const dashboard =
-  document.getElementById('dashboard');
+  document.getElementById(
+    'dashboard'
+  );
 
 const loginBtn =
-  document.getElementById('loginBtn');
+  document.getElementById(
+    'loginBtn'
+  );
 
 const logoutBtn =
-  document.getElementById('logoutBtn');
+  document.getElementById(
+    'logoutBtn'
+  );
 
 const loginError =
-  document.getElementById('loginError');
+  document.getElementById(
+    'loginError'
+  );
 
 const search =
-  document.getElementById('search');
+  document.getElementById(
+    'search'
+  );
 
 const statusFilter =
-  document.getElementById('statusFilter');
+  document.getElementById(
+    'statusFilter'
+  );
 
 const rows =
-  document.getElementById('rows');
+  document.getElementById(
+    'rows'
+  );
 
 const message =
-  document.getElementById('message');
+  document.getElementById(
+    'message'
+  );
 
 
 let leads = [];
 
 
-/* --------------------------------
-   LOGIN
--------------------------------- */
+/* LOGIN */
 
 loginBtn.addEventListener(
   'click',
@@ -598,7 +607,9 @@ async function login(){
       .value;
 
 
-  loginError.classList.add('hidden');
+  loginError.classList.add(
+    'hidden'
+  );
 
 
   if(!email || !password){
@@ -606,7 +617,9 @@ async function login(){
     loginError.textContent =
       'Please enter your email and password.';
 
-    loginError.classList.remove('hidden');
+    loginError.classList.remove(
+      'hidden'
+    );
 
     return;
   }
@@ -621,9 +634,9 @@ async function login(){
   const {error} =
     await supabaseClient.auth.signInWithPassword({
 
-      email: email,
+      email:email,
 
-      password: password
+      password:password
 
     });
 
@@ -633,7 +646,9 @@ async function login(){
     loginError.textContent =
       error.message;
 
-    loginError.classList.remove('hidden');
+    loginError.classList.remove(
+      'hidden'
+    );
 
     loginBtn.disabled = false;
 
@@ -649,27 +664,25 @@ async function login(){
 }
 
 
-/* --------------------------------
-   ENTER KEY LOGIN
--------------------------------- */
+/* ENTER KEY */
 
 document
   .getElementById('loginPassword')
   .addEventListener(
     'keydown',
-    function(e){
+    function(event){
 
-      if(e.key === 'Enter'){
+      if(event.key === 'Enter'){
+
         login();
+
       }
 
     }
   );
 
 
-/* --------------------------------
-   CHECK EXISTING SESSION
--------------------------------- */
+/* EXISTING SESSION */
 
 supabaseClient.auth
   .getSession()
@@ -684,26 +697,28 @@ supabaseClient.auth
   });
 
 
-/* --------------------------------
-   SHOW DASHBOARD
--------------------------------- */
+/* SHOW DASHBOARD */
 
 async function showDashboard(){
 
-  loginSection.classList.add('hidden');
+  loginSection.classList.add(
+    'hidden'
+  );
 
-  dashboard.classList.remove('hidden');
+  dashboard.classList.remove(
+    'hidden'
+  );
 
-  logoutBtn.classList.remove('hidden');
+  logoutBtn.classList.remove(
+    'hidden'
+  );
 
   await loadLeads();
 
 }
 
 
-/* --------------------------------
-   LOAD LEADS
--------------------------------- */
+/* LOAD LEADS */
 
 async function loadLeads(){
 
@@ -745,9 +760,7 @@ async function loadLeads(){
 }
 
 
-/* --------------------------------
-   STATS
--------------------------------- */
+/* STATS */
 
 function updateStats(){
 
@@ -783,9 +796,7 @@ function updateStats(){
 }
 
 
-/* --------------------------------
-   RENDER LEADS
--------------------------------- */
+/* RENDER LEADS */
 
 function renderLeads(){
 
@@ -830,7 +841,9 @@ function renderLeads(){
 
       const matchesSearch =
         !searchText ||
-        searchable.includes(searchText);
+        searchable.includes(
+          searchText
+        );
 
 
       const matchesStatus =
@@ -864,7 +877,9 @@ function renderLeads(){
 
 
   document
-    .querySelectorAll('[data-advance-id]')
+    .querySelectorAll(
+      '[data-status-id]'
+    )
     .forEach(function(button){
 
       button.addEventListener(
@@ -872,7 +887,7 @@ function renderLeads(){
         function(){
 
           advanceLead(
-            button.dataset.advanceId
+            button.dataset.statusId
           );
 
         }
@@ -882,14 +897,16 @@ function renderLeads(){
 
 
   document
-    .querySelectorAll('[data-save-id]')
+    .querySelectorAll(
+      '[data-save-id]'
+    )
     .forEach(function(button){
 
       button.addEventListener(
         'click',
         function(){
 
-          saveLead(
+          saveNotes(
             button.dataset.saveId
           );
 
@@ -901,9 +918,7 @@ function renderLeads(){
 }
 
 
-/* --------------------------------
-   RENDER ONE LEAD
--------------------------------- */
+/* ONE LEAD */
 
 function renderLead(lead){
 
@@ -912,27 +927,30 @@ function renderLead(lead){
     'Uncategorized';
 
 
-  const nextLabel =
-    lead.status === 'new'
-      ? 'Mark Qualified'
-      : lead.status === 'qualified'
-        ? 'Mark Sold'
-        : 'Reopen';
+  let nextButton =
+    'Mark Qualified';
 
 
-  const followUp =
-    lead.follow_up_date || '';
+  if(lead.status === 'qualified'){
 
+    nextButton =
+      'Mark Sold';
 
-  const notes =
-    lead.notes || '';
+  }
+
+  if(lead.status === 'sold'){
+
+    nextButton =
+      'Reopen';
+
+  }
 
 
   return `
 
     <div class="lead">
 
-      <div class="lead-header">
+      <div class="lead-top">
 
         <div>
 
@@ -940,7 +958,7 @@ function renderLead(lead){
             ${escapeHtml(category)}
           </span>
 
-          <div class="small">
+          <div class="lead-id">
             LM-${escapeHtml(
               String(lead.id)
                 .replace(/-/g,'')
@@ -968,190 +986,145 @@ function renderLead(lead){
       </div>
 
 
-      <div class="lead-details">
-
+      <div class="details">
 
         <div class="detail">
-
-          <strong>
-            ZIP
-          </strong>
-
+          <strong>ZIP</strong>
           ${escapeHtml(
             lead.zip || ''
           )}
-
         </div>
 
-
         <div class="detail">
-
-          <strong>
-            Budget
-          </strong>
-
+          <strong>Budget</strong>
           ${escapeHtml(
             lead.budget ||
             'Not specified'
           )}
-
         </div>
 
-
         <div class="detail">
-
-          <strong>
-            Timeline
-          </strong>
-
+          <strong>Timeline</strong>
           ${escapeHtml(
             lead.timeline ||
             ''
           )}
-
         </div>
 
-
         <div class="detail">
-
-          <strong>
-            Contact Preference
-          </strong>
-
+          <strong>Contact Preference</strong>
           ${escapeHtml(
             lead.contact_pref ||
             ''
           )}
-
         </div>
 
-
         <div class="detail">
-
-          <strong>
-            Name
-          </strong>
-
+          <strong>Name</strong>
           ${escapeHtml(
             lead.name ||
             ''
           )}
-
         </div>
 
-
         <div class="detail">
-
-          <strong>
-            Phone
-          </strong>
-
+          <strong>Phone</strong>
           ${escapeHtml(
             lead.phone ||
             ''
           )}
-
         </div>
 
-
         <div class="detail">
-
-          <strong>
-            Email
-          </strong>
-
+          <strong>Email</strong>
           ${escapeHtml(
             lead.email ||
             ''
           )}
-
         </div>
 
-
         <div class="detail">
-
-          <strong>
-            Created
-          </strong>
-
+          <strong>Created</strong>
           ${formatDate(
             lead.created_at
           )}
-
         </div>
-
 
       </div>
 
 
-      <!-- NOTES + FOLLOW UP -->
+      <!-- NOTES -->
 
-      <div class="notes-section">
+      <div class="notes-box">
+
+        <div class="notes-title">
+          📝 Lead Notes
+        </div>
+
+        <p class="notes-help">
+          Add call notes, customer details,
+          estimates, provider information,
+          or anything else you need to remember.
+        </p>
+
 
         <div class="notes-grid">
 
-
           <div>
 
-            <label
-              class="notes-label"
-              for="notes-${escapeHtml(lead.id)}"
-            >
-              Lead Notes
+            <label>
+              Notes
             </label>
 
             <textarea
-              id="notes-${escapeHtml(lead.id)}"
               data-notes-id="${escapeHtml(lead.id)}"
-              placeholder="Add notes about calls, estimates, customer needs, provider conversations, etc."
-            >${escapeHtml(notes)}</textarea>
+              placeholder="Type your notes here..."
+            >${escapeHtml(
+              lead.notes || ''
+            )}</textarea>
 
           </div>
 
 
           <div>
 
-            <label
-              class="notes-label"
-              for="follow-${escapeHtml(lead.id)}"
-            >
+            <label>
               Follow-Up Date
             </label>
 
             <input
-              id="follow-${escapeHtml(lead.id)}"
               type="date"
-              value="${escapeHtml(followUp)}"
               data-follow-id="${escapeHtml(lead.id)}"
+              value="${escapeHtml(
+                lead.follow_up_date || ''
+              )}"
             >
 
           </div>
 
-
         </div>
 
 
-        <div class="lead-actions">
+        <div class="notes-actions">
 
           <button
-            class="btn save-btn"
+            class="btn save-notes"
             data-save-id="${escapeHtml(lead.id)}"
           >
-            Save Lead
+            💾 Save Notes
           </button>
 
 
           <button
             class="btn"
-            data-advance-id="${escapeHtml(lead.id)}"
+            data-status-id="${escapeHtml(lead.id)}"
           >
-            ${nextLabel}
+            ${nextButton}
           </button>
 
         </div>
 
       </div>
-
 
     </div>
 
@@ -1160,36 +1133,32 @@ function renderLead(lead){
 }
 
 
-/* --------------------------------
-   SAVE NOTES + FOLLOW-UP
--------------------------------- */
+/* SAVE NOTES */
 
-async function saveLead(id){
+async function saveNotes(id){
 
-  const notesElement =
+  const notesField =
     document.querySelector(
       `[data-notes-id="${id}"]`
     );
 
 
-  const followElement =
+  const followField =
     document.querySelector(
       `[data-follow-id="${id}"]`
     );
 
 
-  if(!notesElement || !followElement){
-
-    return;
-  }
-
-
   const notes =
-    notesElement.value.trim();
+    notesField
+      ? notesField.value.trim()
+      : '';
 
 
-  const followUpDate =
-    followElement.value || null;
+  const followUp =
+    followField
+      ? followField.value
+      : '';
 
 
   const {error} =
@@ -1197,9 +1166,11 @@ async function saveLead(id){
       .from('leads')
       .update({
 
-        notes: notes || null,
+        notes:
+          notes || null,
 
-        follow_up_date: followUpDate
+        follow_up_date:
+          followUp || null
 
       })
       .eq(
@@ -1221,16 +1192,11 @@ async function saveLead(id){
   }
 
 
-  message.innerHTML =
-    '<div class="success">' +
-    'Lead notes and follow-up date saved.' +
-    '</div>';
-
-
   const lead =
     leads.find(
       item =>
-        String(item.id) === String(id)
+        String(item.id) ===
+        String(id)
     );
 
 
@@ -1240,23 +1206,28 @@ async function saveLead(id){
       notes || null;
 
     lead.follow_up_date =
-      followUpDate;
+      followUp || null;
 
   }
+
+
+  message.innerHTML =
+    '<div class="success">' +
+    'Notes and follow-up date saved successfully.' +
+    '</div>';
 
 }
 
 
-/* --------------------------------
-   ADVANCE LEAD STATUS
--------------------------------- */
+/* CHANGE STATUS */
 
 async function advanceLead(id){
 
   const lead =
     leads.find(
       item =>
-        String(item.id) === String(id)
+        String(item.id) ===
+        String(id)
     );
 
 
@@ -1265,19 +1236,34 @@ async function advanceLead(id){
   }
 
 
-  const nextStatus =
-    lead.status === 'new'
-      ? 'qualified'
-      : lead.status === 'qualified'
-        ? 'sold'
-        : 'new';
+  let nextStatus =
+    'qualified';
+
+
+  if(lead.status === 'qualified'){
+
+    nextStatus =
+      'sold';
+
+  }
+
+
+  if(lead.status === 'sold'){
+
+    nextStatus =
+      'new';
+
+  }
 
 
   const {error} =
     await supabaseClient
       .from('leads')
       .update({
-        status: nextStatus
+
+        status:
+          nextStatus
+
       })
       .eq(
         'id',
@@ -1298,20 +1284,18 @@ async function advanceLead(id){
   }
 
 
+  await loadLeads();
+
+
   message.innerHTML =
     '<div class="success">' +
-    'Lead updated successfully.' +
+    'Lead status updated successfully.' +
     '</div>';
-
-
-  await loadLeads();
 
 }
 
 
-/* --------------------------------
-   SEARCH
--------------------------------- */
+/* SEARCH */
 
 search.addEventListener(
   'input',
@@ -1325,16 +1309,13 @@ statusFilter.addEventListener(
 );
 
 
-/* --------------------------------
-   LOG OUT
--------------------------------- */
+/* LOG OUT */
 
 logoutBtn.addEventListener(
   'click',
   async function(){
 
     await supabaseClient.auth.signOut();
-
 
     dashboard.classList.add(
       'hidden'
@@ -1348,7 +1329,8 @@ logoutBtn.addEventListener(
       'hidden'
     );
 
-    loginBtn.disabled = false;
+    loginBtn.disabled =
+      false;
 
     loginBtn.textContent =
       'Sign In';
@@ -1357,29 +1339,28 @@ logoutBtn.addEventListener(
 );
 
 
-/* --------------------------------
-   HELPERS
--------------------------------- */
+/* HELPERS */
 
 function escapeHtml(value){
 
-  return String(value ?? '')
-    .replace(
-      /[&<>"']/g,
-      function(match){
+  return String(
+    value ?? ''
+  ).replace(
+    /[&<>"']/g,
+    function(match){
 
-        return {
+      return {
 
-          '&':'&amp;',
-          '<':'&lt;',
-          '>':'&gt;',
-          '"':'&quot;',
-          "'":'&#39;'
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
 
-        }[match];
+      }[match];
 
-      }
-    );
+    }
+  );
 
 }
 
