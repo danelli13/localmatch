@@ -283,6 +283,45 @@ textarea:focus{
   flex-wrap:wrap;
 }
 
+.notes-view{
+  display:grid;
+  grid-template-columns:1fr 220px;
+  gap:18px;
+  align-items:start;
+}
+
+.notes-detail{
+  padding:14px 16px;
+  border:1px solid #dfe5ee;
+  border-radius:10px;
+  background:#fff;
+  min-height:70px;
+}
+
+.notes-detail-label{
+  display:block;
+  font-size:13px;
+  font-weight:800;
+  color:#687386;
+  margin-bottom:7px;
+}
+
+.notes-detail-value{
+  color:#172033;
+  line-height:1.5;
+  white-space:pre-wrap;
+}
+
+.notes-detail-empty{
+  color:#9aa3b2;
+  font-style:italic;
+}
+
+.edit-notes{
+  background:#fff;
+  color:#172033;
+}
+
 .save-notes{
   background:#111827;
   color:#fff;
@@ -306,6 +345,10 @@ textarea:focus{
   }
 
   .notes-grid{
+    grid-template-columns:1fr;
+  }
+
+  .notes-view{
     grid-template-columns:1fr;
   }
 
@@ -915,6 +958,38 @@ function renderLeads(){
 
     });
 
+
+  document
+    .querySelectorAll(
+      '[data-edit-id]'
+    )
+    .forEach(function(button){
+
+      button.addEventListener(
+        'click',
+        function(){
+
+          const editor =
+            document.querySelector(
+              `[data-editor-id="${button.dataset.editId}"]`
+            );
+
+          if(editor){
+
+            editor.classList.toggle('hidden');
+
+            button.textContent =
+              editor.classList.contains('hidden')
+                ? '✏️ Edit'
+                : '✖️ Cancel';
+
+          }
+
+        }
+      );
+
+    });
+
 }
 
 
@@ -1053,52 +1128,63 @@ function renderLead(lead){
       </div>
 
 
-      <!-- NOTES -->
+      <!-- SALES CASE DETAILS -->
 
       <div class="notes-box">
 
         <div class="notes-title">
-          📝 Lead Notes
+          📝 Sales Case Details
         </div>
 
         <p class="notes-help">
-          Add call notes, customer details,
-          estimates, provider information,
-          or anything else you need to remember.
+          Saved notes and follow-up information for this customer case.
         </p>
 
+        <div class="notes-view">
 
-        <div class="notes-grid">
+          <div class="notes-detail">
 
-          <div>
-
-            <label>
+            <span class="notes-detail-label">
               Notes
-            </label>
+            </span>
 
-            <textarea
-              data-notes-id="${escapeHtml(lead.id)}"
-              placeholder="Type your notes here..."
-            >${escapeHtml(
-              lead.notes || ''
-            )}</textarea>
+            <div class="notes-detail-value ${
+              lead.notes
+                ? ''
+                : 'notes-detail-empty'
+            }">
+
+              ${escapeHtml(
+                lead.notes ||
+                'No notes added yet.'
+              )}
+
+            </div>
 
           </div>
 
 
-          <div>
+          <div class="notes-detail">
 
-            <label>
+            <span class="notes-detail-label">
               Follow-Up Date
-            </label>
+            </span>
 
-            <input
-              type="date"
-              data-follow-id="${escapeHtml(lead.id)}"
-              value="${escapeHtml(
-                lead.follow_up_date || ''
-              )}"
-            >
+            <div class="notes-detail-value ${
+              lead.follow_up_date
+                ? ''
+                : 'notes-detail-empty'
+            }">
+
+              ${
+                lead.follow_up_date
+                  ? formatDateOnly(
+                      lead.follow_up_date
+                    )
+                  : 'No follow-up date set.'
+              }
+
+            </div>
 
           </div>
 
@@ -1108,10 +1194,10 @@ function renderLead(lead){
         <div class="notes-actions">
 
           <button
-            class="btn save-notes"
-            data-save-id="${escapeHtml(lead.id)}"
+            class="btn edit-notes"
+            data-edit-id="${escapeHtml(lead.id)}"
           >
-            💾 Save Notes
+            ✏️ Edit
           </button>
 
 
@@ -1121,6 +1207,65 @@ function renderLead(lead){
           >
             ${nextButton}
           </button>
+
+        </div>
+
+
+        <!-- EDIT AREA -->
+
+        <div
+          class="notes-editor hidden"
+          data-editor-id="${escapeHtml(lead.id)}"
+          style="margin-top:18px;"
+        >
+
+          <div class="notes-grid">
+
+            <div>
+
+              <label>
+                Notes
+              </label>
+
+              <textarea
+                data-notes-id="${escapeHtml(lead.id)}"
+                placeholder="Type your notes here..."
+              >${escapeHtml(
+                lead.notes || ''
+              )}</textarea>
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Follow-Up Date
+              </label>
+
+              <input
+                type="date"
+                data-follow-id="${escapeHtml(lead.id)}"
+                value="${escapeHtml(
+                  lead.follow_up_date || ''
+                )}"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="notes-actions">
+
+            <button
+              class="btn save-notes"
+              data-save-id="${escapeHtml(lead.id)}"
+            >
+              💾 Save Changes
+            </button>
+
+          </div>
 
         </div>
 
@@ -1211,9 +1356,12 @@ async function saveNotes(id){
   }
 
 
+  renderLeads();
+
+
   message.innerHTML =
     '<div class="success">' +
-    'Notes and follow-up date saved successfully.' +
+    'Sales case updated successfully.' +
     '</div>';
 
 }
@@ -1373,6 +1521,30 @@ function formatDate(value){
 
   return new Date(value)
     .toLocaleString();
+
+}
+
+
+function formatDateOnly(value){
+
+  if(!value){
+    return '';
+  }
+
+  const parts =
+    String(value).split('-');
+
+  if(parts.length !== 3){
+    return String(value);
+  }
+
+  return (
+    parts[1] +
+    '/' +
+    parts[2] +
+    '/' +
+    parts[0]
+  );
 
 }
 
