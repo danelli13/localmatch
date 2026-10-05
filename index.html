@@ -183,6 +183,7 @@ const leadId=crypto.randomUUID();
 
 const lead={
 id:leadId,
+category:categoryField.value.trim(),
 request:requestField.value.trim(),
 zip:zipField.value.trim(),
 budget:budgetField.value.trim()||null,
@@ -190,7 +191,7 @@ timeline:timelineField.value,
 contact_pref:contactPrefField.value,
 name:nameField.value.trim(),
 phone:phoneField.value.trim(),
-email:emailField.value.trim(),
+email:emailField.value.trim().toLowerCase(),
 status:'new'
 };
 
