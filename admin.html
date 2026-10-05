@@ -10,7 +10,7 @@
 <style>
 
 *{
-  box-sizing:border-box
+  box-sizing:border-box;
 }
 
 body{
@@ -68,10 +68,6 @@ nav{
 
 h1{
   margin:0 0 8px;
-}
-
-h2{
-  margin-top:0;
 }
 
 p{
@@ -298,9 +294,6 @@ select:focus{
 
 <body>
 
-
-<!-- NAVIGATION -->
-
 <nav>
 
   <div class="logo">
@@ -489,14 +482,10 @@ select:focus{
     </div>
 
 
-    <div
-      id="message"
-    ></div>
+    <div id="message"></div>
 
 
-    <div
-      id="rows"
-    ></div>
+    <div id="rows"></div>
 
   </div>
 
@@ -506,7 +495,6 @@ select:focus{
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
 
 /* --------------------------------
    SUPABASE
@@ -519,7 +507,14 @@ const SUPABASE_ANON_KEY =
   'sb_publishable_lGzDmYYU08rNJv_qHhKDhw__1qXsEWU';
 
 
-const supabase =
+/*
+  IMPORTANT:
+  We call our client "supabaseClient"
+  instead of "supabase" so it does not
+  conflict with the Supabase library.
+*/
+
+const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_ANON_KEY
@@ -602,9 +597,11 @@ async function login(){
       .getElementById('loginPassword')
       .value;
 
+
   loginError.classList.add(
     'hidden'
   );
+
 
   if(!email || !password){
 
@@ -626,7 +623,7 @@ async function login(){
 
 
   const {error} =
-    await supabase.auth.signInWithPassword({
+    await supabaseClient.auth.signInWithPassword({
 
       email: email,
 
@@ -680,7 +677,7 @@ document
    CHECK EXISTING SESSION
 -------------------------------- */
 
-supabase.auth
+supabaseClient.auth
   .getSession()
   .then(function(result){
 
@@ -727,7 +724,7 @@ async function loadLeads(){
 
 
   const {data,error} =
-    await supabase
+    await supabaseClient
       .from('leads')
       .select('*')
       .order(
@@ -909,14 +906,6 @@ function renderLead(lead){
   const category =
     lead.category ||
     'Uncategorized';
-
-
-  const nextStatus =
-    lead.status === 'new'
-      ? 'qualified'
-      : lead.status === 'qualified'
-        ? 'sold'
-        : 'new';
 
 
   const nextLabel =
@@ -1132,7 +1121,7 @@ async function advanceLead(id){
 
 
   const {error} =
-    await supabase
+    await supabaseClient
       .from('leads')
       .update({
         status: nextStatus
@@ -1191,7 +1180,8 @@ logoutBtn.addEventListener(
   'click',
   async function(){
 
-    await supabase.auth.signOut();
+    await supabaseClient.auth.signOut();
+
 
     dashboard.classList.add(
       'hidden'
