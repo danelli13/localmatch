@@ -70,6 +70,10 @@ h1{
   margin:0 0 8px;
 }
 
+h2{
+  margin:0 0 8px;
+}
+
 p{
   color:#687386;
 }
@@ -378,6 +382,215 @@ textarea:focus{
   color:#7c8797;
 }
 
+/* TABS */
+
+.tabs{
+  display:flex;
+  gap:8px;
+  margin:25px 0;
+  border-bottom:1px solid #dfe5ee;
+}
+
+.tab-btn{
+  border:0;
+  background:transparent;
+  padding:12px 18px;
+  font:inherit;
+  font-weight:800;
+  color:#687386;
+  cursor:pointer;
+  border-bottom:3px solid transparent;
+}
+
+.tab-btn:hover{
+  color:#4f46e5;
+}
+
+.tab-btn.active{
+  color:#4f46e5;
+  border-bottom-color:#4f46e5;
+}
+
+.tab-panel{
+  display:none;
+}
+
+.tab-panel.active{
+  display:block;
+}
+
+/* PROVIDERS */
+
+.provider-toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+
+.provider-toolbar h2{
+  margin:0;
+}
+
+.add-provider-btn{
+  background:#4f46e5;
+  color:#fff;
+  border-color:#4f46e5;
+}
+
+.add-provider-btn:hover{
+  background:#4338ca;
+}
+
+.provider-form{
+  margin-bottom:20px;
+  padding:22px;
+  border:1px solid #dfe5ee;
+  border-radius:12px;
+  background:#fafbff;
+}
+
+.provider-form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.provider-form-actions{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+.provider-save{
+  background:#4f46e5;
+  color:#fff;
+  border-color:#4f46e5;
+}
+
+.provider-save:hover{
+  background:#4338ca;
+}
+
+.provider{
+  background:#fff;
+  border:1px solid #dfe5ee;
+  border-radius:14px;
+  padding:22px;
+  margin-bottom:16px;
+}
+
+.provider-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
+}
+
+.provider-name{
+  font-size:20px;
+  font-weight:800;
+  margin:0 0 7px;
+}
+
+.provider-meta{
+  color:#687386;
+  font-size:14px;
+}
+
+.provider-active{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  background:#dcfce7;
+  color:#166534;
+  font-size:13px;
+  font-weight:800;
+}
+
+.provider-inactive{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  background:#f3f4f6;
+  color:#6b7280;
+  font-size:13px;
+  font-weight:800;
+}
+
+.provider-details{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:20px;
+}
+
+.provider-detail{
+  font-size:14px;
+  color:#4b5563;
+}
+
+.provider-detail strong{
+  display:block;
+  color:#172033;
+  margin-bottom:4px;
+}
+
+.provider-services{
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid #e5e9f0;
+  color:#4b5563;
+}
+
+.provider-actions{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+.provider-edit{
+  background:#fff;
+}
+
+.provider-toggle{
+  background:#fff;
+}
+
+.provider-delete{
+  color:#991b1b;
+  border-color:#fecaca;
+}
+
+.provider-delete:hover{
+  background:#fef2f2;
+}
+
+.provider-edit-form{
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid #e5e9f0;
+}
+
+.provider-edit-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.provider-edit-actions{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+/* MOBILE */
+
 @media(max-width:800px){
 
   .stats{
@@ -400,6 +613,15 @@ textarea:focus{
     grid-template-columns:1fr;
   }
 
+  .provider-details{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .provider-form-grid,
+  .provider-edit-grid{
+    grid-template-columns:1fr;
+  }
+
 }
 
 @media(max-width:550px){
@@ -414,6 +636,14 @@ textarea:focus{
 
   .lead-top{
     flex-direction:column;
+  }
+
+  .provider-top{
+    flex-direction:column;
+  }
+
+  .provider-details{
+    grid-template-columns:1fr;
   }
 
 }
@@ -461,7 +691,7 @@ textarea:focus{
   <h1>LocalMatch Admin</h1>
 
   <p>
-    Sign in to manage LocalMatch customer leads.
+    Sign in to manage LocalMatch customer leads and providers.
   </p>
 
   <label>
@@ -510,95 +740,342 @@ textarea:focus{
   <div class="card">
 
     <h1>
-      Lead Dashboard
+      LocalMatch Admin
     </h1>
 
     <p>
-      Manage your LocalMatch customer requests.
+      Manage your LocalMatch customer requests and service providers.
     </p>
 
   </div>
 
 
-  <!-- STATS -->
+  <!-- TABS -->
 
-  <div class="stats">
+  <div class="tabs">
 
-    <div class="stat">
-      <span class="stat-label">
-        Total Leads
-      </span>
+    <button
+      id="leadsTabBtn"
+      class="tab-btn active"
+    >
+      📋 Leads
+    </button>
 
-      <b id="total">0</b>
-    </div>
-
-    <div class="stat">
-      <span class="stat-label">
-        New
-      </span>
-
-      <b id="newCount">0</b>
-    </div>
-
-    <div class="stat">
-      <span class="stat-label">
-        Qualified
-      </span>
-
-      <b id="qualified">0</b>
-    </div>
-
-    <div class="stat">
-      <span class="stat-label">
-        Sold
-      </span>
-
-      <b id="sold">0</b>
-    </div>
+    <button
+      id="providersTabBtn"
+      class="tab-btn"
+    >
+      🏢 Providers
+    </button>
 
   </div>
 
 
-  <!-- LEADS -->
+  <!-- LEADS TAB -->
 
-  <div class="card">
+  <section
+    id="leadsTab"
+    class="tab-panel active"
+  >
 
-    <div class="toolbar">
+    <!-- STATS -->
 
-      <input
-        id="search"
-        type="text"
-        placeholder="Search leads..."
+    <div class="stats">
+
+      <div class="stat">
+
+        <span class="stat-label">
+          Total Leads
+        </span>
+
+        <b id="total">0</b>
+
+      </div>
+
+      <div class="stat">
+
+        <span class="stat-label">
+          New
+        </span>
+
+        <b id="newCount">0</b>
+
+      </div>
+
+      <div class="stat">
+
+        <span class="stat-label">
+          Qualified
+        </span>
+
+        <b id="qualified">0</b>
+
+      </div>
+
+      <div class="stat">
+
+        <span class="stat-label">
+          Sold
+        </span>
+
+        <b id="sold">0</b>
+
+      </div>
+
+    </div>
+
+
+    <!-- LEADS -->
+
+    <div class="card">
+
+      <div class="toolbar">
+
+        <input
+          id="search"
+          type="text"
+          placeholder="Search leads..."
+        >
+
+        <select id="statusFilter">
+
+          <option value="all">
+            All Statuses
+          </option>
+
+          <option value="new">
+            New
+          </option>
+
+          <option value="qualified">
+            Qualified
+          </option>
+
+          <option value="sold">
+            Sold
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div id="message"></div>
+
+      <div id="rows"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROVIDERS TAB -->
+
+  <section
+    id="providersTab"
+    class="tab-panel"
+  >
+
+    <div class="card">
+
+      <div class="provider-toolbar">
+
+        <div>
+
+          <h2>
+            Provider Management
+          </h2>
+
+          <p>
+            Manage businesses that can receive LocalMatch leads.
+          </p>
+
+        </div>
+
+        <button
+          id="addProviderBtn"
+          class="btn add-provider-btn"
+        >
+          ➕ Add Provider
+        </button>
+
+      </div>
+
+
+      <!-- ADD PROVIDER FORM -->
+
+      <div
+        id="providerForm"
+        class="provider-form hidden"
       >
 
-      <select id="statusFilter">
+        <h2>
+          Add Provider
+        </h2>
 
-        <option value="all">
-          All Statuses
-        </option>
+        <p>
+          Add a business that can eventually receive matched LocalMatch leads.
+        </p>
 
-        <option value="new">
-          New
-        </option>
 
-        <option value="qualified">
-          Qualified
-        </option>
+        <div class="provider-form-grid">
 
-        <option value="sold">
-          Sold
-        </option>
+          <div>
 
-      </select>
+            <label>
+              Business Name
+            </label>
+
+            <input
+              id="providerBusinessName"
+              type="text"
+              placeholder="Example: Pittsburgh Pro Flooring"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Category
+            </label>
+
+            <input
+              id="providerCategory"
+              type="text"
+              placeholder="Example: Flooring"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Contact Name
+            </label>
+
+            <input
+              id="providerContactName"
+              type="text"
+              placeholder="Example: John Smith"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Phone
+            </label>
+
+            <input
+              id="providerPhone"
+              type="tel"
+              placeholder="Example: 412-555-1234"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Email
+            </label>
+
+            <input
+              id="providerEmail"
+              type="email"
+              placeholder="Example: john@company.com"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              ZIP Code
+            </label>
+
+            <input
+              id="providerZip"
+              type="text"
+              placeholder="Example: 15237"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Service Area
+            </label>
+
+            <input
+              id="providerServiceArea"
+              type="text"
+              placeholder="Example: Pittsburgh / North Hills"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Services Offered
+            </label>
+
+            <input
+              id="providerServices"
+              type="text"
+              placeholder="Example: LVP, hardwood, laminate"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="provider-form-actions">
+
+          <button
+            id="saveProviderBtn"
+            class="btn provider-save"
+          >
+            💾 Save Provider
+          </button>
+
+          <button
+            id="cancelProviderBtn"
+            class="btn"
+          >
+            Cancel
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div id="providerMessage"></div>
+
+      <div id="providerRows">
+
+        <div class="empty">
+          Loading providers...
+        </div>
+
+      </div>
 
     </div>
 
-
-    <div id="message"></div>
-
-    <div id="rows"></div>
-
-  </div>
+  </section>
 
 </main>
 
@@ -622,6 +1099,8 @@ const supabaseClient =
     SUPABASE_ANON_KEY
   );
 
+
+/* ELEMENTS */
 
 const loginSection =
   document.getElementById(
@@ -669,7 +1148,108 @@ const message =
   );
 
 
+/* TAB ELEMENTS */
+
+const leadsTabBtn =
+  document.getElementById(
+    'leadsTabBtn'
+  );
+
+const providersTabBtn =
+  document.getElementById(
+    'providersTabBtn'
+  );
+
+const leadsTab =
+  document.getElementById(
+    'leadsTab'
+  );
+
+const providersTab =
+  document.getElementById(
+    'providersTab'
+  );
+
+
+/* PROVIDER ELEMENTS */
+
+const addProviderBtn =
+  document.getElementById(
+    'addProviderBtn'
+  );
+
+const providerForm =
+  document.getElementById(
+    'providerForm'
+  );
+
+const saveProviderBtn =
+  document.getElementById(
+    'saveProviderBtn'
+  );
+
+const cancelProviderBtn =
+  document.getElementById(
+    'cancelProviderBtn'
+  );
+
+const providerRows =
+  document.getElementById(
+    'providerRows'
+  );
+
+const providerMessage =
+  document.getElementById(
+    'providerMessage'
+  );
+
+
+const providerBusinessName =
+  document.getElementById(
+    'providerBusinessName'
+  );
+
+const providerCategory =
+  document.getElementById(
+    'providerCategory'
+  );
+
+const providerContactName =
+  document.getElementById(
+    'providerContactName'
+  );
+
+const providerPhone =
+  document.getElementById(
+    'providerPhone'
+  );
+
+const providerEmail =
+  document.getElementById(
+    'providerEmail'
+  );
+
+const providerZip =
+  document.getElementById(
+    'providerZip'
+  );
+
+const providerServiceArea =
+  document.getElementById(
+    'providerServiceArea'
+  );
+
+const providerServices =
+  document.getElementById(
+    'providerServices'
+  );
+
+
+/* DATA */
+
 let leads = [];
+
+let providers = [];
 
 
 /* LOGIN */
@@ -802,7 +1382,61 @@ async function showDashboard(){
 
   await loadLeads();
 
+  await loadProviders();
+
 }
+
+
+/* TABS */
+
+leadsTabBtn.addEventListener(
+  'click',
+  function(){
+
+    leadsTabBtn.classList.add(
+      'active'
+    );
+
+    providersTabBtn.classList.remove(
+      'active'
+    );
+
+    leadsTab.classList.add(
+      'active'
+    );
+
+    providersTab.classList.remove(
+      'active'
+    );
+
+  }
+);
+
+
+providersTabBtn.addEventListener(
+  'click',
+  function(){
+
+    providersTabBtn.classList.add(
+      'active'
+    );
+
+    leadsTabBtn.classList.remove(
+      'active'
+    );
+
+    providersTab.classList.add(
+      'active'
+    );
+
+    leadsTab.classList.remove(
+      'active'
+    );
+
+    loadProviders();
+
+  }
+);
 
 
 /* LOAD LEADS */
@@ -861,7 +1495,8 @@ function updateStats(){
     .getElementById('newCount')
     .textContent =
       leads.filter(
-        lead => lead.status === 'new'
+        lead =>
+          lead.status === 'new'
       ).length;
 
 
@@ -869,7 +1504,8 @@ function updateStats(){
     .getElementById('qualified')
     .textContent =
       leads.filter(
-        lead => lead.status === 'qualified'
+        lead =>
+          lead.status === 'qualified'
       ).length;
 
 
@@ -877,7 +1513,8 @@ function updateStats(){
     .getElementById('sold')
     .textContent =
       leads.filter(
-        lead => lead.status === 'sold'
+        lead =>
+          lead.status === 'sold'
       ).length;
 
 }
@@ -1018,13 +1655,18 @@ function renderLeads(){
               `[data-editor-id="${button.dataset.editId}"]`
             );
 
+
           if(!editor){
+
             return;
+
           }
+
 
           editor.classList.toggle(
             'hidden'
           );
+
 
           button.textContent =
             editor.classList.contains('hidden')
@@ -1058,6 +1700,7 @@ function renderLead(lead){
       'Mark Sold';
 
   }
+
 
   if(lead.status === 'sold'){
 
@@ -1387,7 +2030,9 @@ async function saveNotes(id){
 
 
   if(!lead){
+
     return;
+
   }
 
 
@@ -1396,15 +2041,6 @@ async function saveNotes(id){
       ? lead.notes.trim()
       : '';
 
-
-  /*
-    IMPORTANT:
-
-    Existing notes are NEVER replaced.
-
-    A new note is appended to the
-    existing history with a timestamp.
-  */
 
   let combinedNotes =
     existingNotes;
@@ -1464,11 +2100,13 @@ async function saveNotes(id){
       '</div>';
 
     return;
+
   }
 
 
   lead.notes =
     combinedNotes || null;
+
 
   lead.follow_up_date =
     followUp || null;
@@ -1498,7 +2136,9 @@ async function advanceLead(id){
 
 
   if(!lead){
+
     return;
+
   }
 
 
@@ -1547,6 +2187,7 @@ async function advanceLead(id){
       '</div>';
 
     return;
+
   }
 
 
@@ -1575,6 +2216,1058 @@ statusFilter.addEventListener(
 );
 
 
+/* ========================================= */
+/* PROVIDER MANAGEMENT                       */
+/* ========================================= */
+
+
+/* SHOW ADD PROVIDER FORM */
+
+addProviderBtn.addEventListener(
+  'click',
+  function(){
+
+    clearProviderForm();
+
+    providerForm.classList.remove(
+      'hidden'
+    );
+
+    providerBusinessName.focus();
+
+  }
+);
+
+
+/* CANCEL ADD PROVIDER */
+
+cancelProviderBtn.addEventListener(
+  'click',
+  function(){
+
+    providerForm.classList.add(
+      'hidden'
+    );
+
+    clearProviderForm();
+
+  }
+);
+
+
+/* CLEAR PROVIDER FORM */
+
+function clearProviderForm(){
+
+  providerBusinessName.value = '';
+
+  providerCategory.value = '';
+
+  providerContactName.value = '';
+
+  providerPhone.value = '';
+
+  providerEmail.value = '';
+
+  providerZip.value = '';
+
+  providerServiceArea.value = '';
+
+  providerServices.value = '';
+
+}
+
+
+/* LOAD PROVIDERS */
+
+async function loadProviders(){
+
+  providerRows.innerHTML =
+    '<div class="empty">Loading providers...</div>';
+
+
+  const {data,error} =
+    await supabaseClient
+      .from('providers')
+      .select('*')
+      .order(
+        'created_at',
+        {
+          ascending:false
+        }
+      );
+
+
+  if(error){
+
+    providerRows.innerHTML =
+      '<div class="error">' +
+      escapeHtml(
+        error.message
+      ) +
+      '</div>';
+
+    return;
+
+  }
+
+
+  providers =
+    data || [];
+
+
+  renderProviders();
+
+}
+
+
+/* SAVE NEW PROVIDER */
+
+saveProviderBtn.addEventListener(
+  'click',
+  saveProvider
+);
+
+
+async function saveProvider(){
+
+  const businessName =
+    providerBusinessName.value.trim();
+
+  const category =
+    providerCategory.value.trim();
+
+  const contactName =
+    providerContactName.value.trim();
+
+  const phone =
+    providerPhone.value.trim();
+
+  const email =
+    providerEmail.value.trim()
+      .toLowerCase();
+
+  const zip =
+    providerZip.value.trim();
+
+  const serviceArea =
+    providerServiceArea.value.trim();
+
+  const services =
+    providerServices.value.trim();
+
+
+  providerMessage.innerHTML = '';
+
+
+  if(!businessName || !category){
+
+    providerMessage.innerHTML =
+      '<div class="error">' +
+      'Business Name and Category are required.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  saveProviderBtn.disabled = true;
+
+  saveProviderBtn.textContent =
+    'Saving...';
+
+
+  const {error} =
+    await supabaseClient
+      .from('providers')
+      .insert({
+
+        business_name:
+          businessName,
+
+        category:
+          category,
+
+        contact_name:
+          contactName || null,
+
+        phone:
+          phone || null,
+
+        email:
+          email || null,
+
+        zip:
+          zip || null,
+
+        service_area:
+          serviceArea || null,
+
+        services:
+          services || null,
+
+        active:
+          true
+
+      });
+
+
+  if(error){
+
+    providerMessage.innerHTML =
+      '<div class="error">' +
+      escapeHtml(
+        error.message
+      ) +
+      '</div>';
+
+    saveProviderBtn.disabled = false;
+
+    saveProviderBtn.textContent =
+      '💾 Save Provider';
+
+    return;
+
+  }
+
+
+  providerMessage.innerHTML =
+    '<div class="success">' +
+    'Provider added successfully.' +
+    '</div>';
+
+
+  clearProviderForm();
+
+
+  providerForm.classList.add(
+    'hidden'
+  );
+
+
+  saveProviderBtn.disabled = false;
+
+  saveProviderBtn.textContent =
+    '💾 Save Provider';
+
+
+  await loadProviders();
+
+}
+
+
+/* RENDER PROVIDERS */
+
+function renderProviders(){
+
+  if(providers.length === 0){
+
+    providerRows.innerHTML =
+      '<div class="empty">' +
+      'No providers found.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  providerRows.innerHTML =
+    providers
+      .map(renderProvider)
+      .join('');
+
+
+  attachProviderEvents();
+
+}
+
+
+/* RENDER ONE PROVIDER */
+
+function renderProvider(provider){
+
+  const active =
+    provider.active !== false;
+
+
+  const statusHtml =
+    active
+
+      ? `
+        <span class="provider-active">
+          ● Active
+        </span>
+      `
+
+      : `
+        <span class="provider-inactive">
+          ● Inactive
+        </span>
+      `;
+
+
+  return `
+
+    <div class="provider">
+
+      <div class="provider-top">
+
+        <div>
+
+          <div class="provider-name">
+            ${escapeHtml(
+              provider.business_name ||
+              'Unnamed Provider'
+            )}
+          </div>
+
+          <div class="provider-meta">
+
+            <span class="category">
+              ${escapeHtml(
+                provider.category ||
+                'Uncategorized'
+              )}
+            </span>
+
+          </div>
+
+        </div>
+
+        <div>
+          ${statusHtml}
+        </div>
+
+      </div>
+
+
+      <div class="provider-details">
+
+        <div class="provider-detail">
+
+          <strong>
+            Contact
+          </strong>
+
+          ${escapeHtml(
+            provider.contact_name ||
+            'Not provided'
+          )}
+
+        </div>
+
+
+        <div class="provider-detail">
+
+          <strong>
+            Phone
+          </strong>
+
+          ${escapeHtml(
+            provider.phone ||
+            'Not provided'
+          )}
+
+        </div>
+
+
+        <div class="provider-detail">
+
+          <strong>
+            Email
+          </strong>
+
+          ${escapeHtml(
+            provider.email ||
+            'Not provided'
+          )}
+
+        </div>
+
+
+        <div class="provider-detail">
+
+          <strong>
+            ZIP
+          </strong>
+
+          ${escapeHtml(
+            provider.zip ||
+            'Not provided'
+          )}
+
+        </div>
+
+
+        <div class="provider-detail">
+
+          <strong>
+            Service Area
+          </strong>
+
+          ${escapeHtml(
+            provider.service_area ||
+            'Not provided'
+          )}
+
+        </div>
+
+
+        <div class="provider-detail">
+
+          <strong>
+            Added
+          </strong>
+
+          ${formatDate(
+            provider.created_at
+          )}
+
+        </div>
+
+      </div>
+
+
+      <div class="provider-services">
+
+        <strong>
+          Services:
+        </strong>
+
+        ${escapeHtml(
+          provider.services ||
+          'No services listed.'
+        )}
+
+      </div>
+
+
+      <div class="provider-actions">
+
+        <button
+          class="btn provider-edit"
+          data-provider-edit-id="${escapeHtml(provider.id)}"
+        >
+          ✏️ Edit
+        </button>
+
+
+        <button
+          class="btn provider-toggle"
+          data-provider-toggle-id="${escapeHtml(provider.id)}"
+        >
+          ${active
+            ? '⏸ Deactivate'
+            : '▶ Activate'}
+        </button>
+
+
+        <button
+          class="btn provider-delete"
+          data-provider-delete-id="${escapeHtml(provider.id)}"
+        >
+          🗑️ Delete
+        </button>
+
+      </div>
+
+
+      <div
+        class="provider-edit-form hidden"
+        data-provider-editor-id="${escapeHtml(provider.id)}"
+      >
+
+        <div class="provider-edit-grid">
+
+          <div>
+
+            <label>
+              Business Name
+            </label>
+
+            <input
+              type="text"
+              data-edit-business="${escapeHtml(provider.id)}"
+              value="${escapeHtml(provider.business_name || '')}"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Category
+            </label>
+
+            <input
+              type="text"
+              data-edit-category="${escapeHtml(provider.id)}"
+              value="${escapeHtml(provider.category || '')}"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Contact Name
+            </label>
+
+            <input
+              type="text"
+              data-edit-contact="${escapeHtml(provider.id)}"
+              value="${escapeHtml(provider.contact_name || '')}"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Phone
+            </label>
+
+            <input
+              type="tel"
+              data-edit-phone="${escapeHtml(provider.id)}"
+              value="${escapeHtml(provider.phone || '')}"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Email
+            </label>
+
+            <input
+              type="email"
+              data-edit-email="${escapeHtml(provider.id)}"
+              value="${escapeHtml(provider.email || '')}"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              ZIP Code
+            </label>
+
+            <input
+              type="text"
+              data-edit-zip="${escapeHtml(provider.id)}"
+              value="${escapeHtml(provider.zip || '')}"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Service Area
+            </label>
+
+            <input
+              type="text"
+              data-edit-area="${escapeHtml(provider.id)}"
+              value="${escapeHtml(provider.service_area || '')}"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Services Offered
+            </label>
+
+            <input
+              type="text"
+              data-edit-services="${escapeHtml(provider.id)}"
+              value="${escapeHtml(provider.services || '')}"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="provider-edit-actions">
+
+          <button
+            class="btn provider-save"
+            data-provider-save-id="${escapeHtml(provider.id)}"
+          >
+            💾 Save Changes
+          </button>
+
+          <button
+            class="btn provider-cancel-edit"
+            data-provider-cancel-id="${escapeHtml(provider.id)}"
+          >
+            Cancel
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* PROVIDER BUTTON EVENTS */
+
+function attachProviderEvents(){
+
+  document
+    .querySelectorAll(
+      '[data-provider-edit-id]'
+    )
+    .forEach(function(button){
+
+      button.addEventListener(
+        'click',
+        function(){
+
+          const id =
+            button.dataset.providerEditId;
+
+          const editor =
+            document.querySelector(
+              `[data-provider-editor-id="${id}"]`
+            );
+
+
+          if(!editor){
+
+            return;
+
+          }
+
+
+          editor.classList.toggle(
+            'hidden'
+          );
+
+
+          button.textContent =
+            editor.classList.contains('hidden')
+              ? '✏️ Edit'
+              : '✖️ Cancel';
+
+        }
+      );
+
+    });
+
+
+  document
+    .querySelectorAll(
+      '[data-provider-cancel-id]'
+    )
+    .forEach(function(button){
+
+      button.addEventListener(
+        'click',
+        function(){
+
+          const id =
+            button.dataset.providerCancelId;
+
+          const editor =
+            document.querySelector(
+              `[data-provider-editor-id="${id}"]`
+            );
+
+
+          if(editor){
+
+            editor.classList.add(
+              'hidden'
+            );
+
+          }
+
+
+          const editButton =
+            document.querySelector(
+              `[data-provider-edit-id="${id}"]`
+            );
+
+
+          if(editButton){
+
+            editButton.textContent =
+              '✏️ Edit';
+
+          }
+
+        }
+      );
+
+    });
+
+
+  document
+    .querySelectorAll(
+      '[data-provider-save-id]'
+    )
+    .forEach(function(button){
+
+      button.addEventListener(
+        'click',
+        function(){
+
+          updateProvider(
+            button.dataset.providerSaveId
+          );
+
+        }
+      );
+
+    });
+
+
+  document
+    .querySelectorAll(
+      '[data-provider-toggle-id]'
+    )
+    .forEach(function(button){
+
+      button.addEventListener(
+        'click',
+        function(){
+
+          toggleProvider(
+            button.dataset.providerToggleId
+          );
+
+        }
+      );
+
+    });
+
+
+  document
+    .querySelectorAll(
+      '[data-provider-delete-id]'
+    )
+    .forEach(function(button){
+
+      button.addEventListener(
+        'click',
+        function(){
+
+          deleteProvider(
+            button.dataset.providerDeleteId
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+/* UPDATE PROVIDER */
+
+async function updateProvider(id){
+
+  const businessField =
+    document.querySelector(
+      `[data-edit-business="${id}"]`
+    );
+
+  const categoryField =
+    document.querySelector(
+      `[data-edit-category="${id}"]`
+    );
+
+  const contactField =
+    document.querySelector(
+      `[data-edit-contact="${id}"]`
+    );
+
+  const phoneField =
+    document.querySelector(
+      `[data-edit-phone="${id}"]`
+    );
+
+  const emailField =
+    document.querySelector(
+      `[data-edit-email="${id}"]`
+    );
+
+  const zipField =
+    document.querySelector(
+      `[data-edit-zip="${id}"]`
+    );
+
+  const areaField =
+    document.querySelector(
+      `[data-edit-area="${id}"]`
+    );
+
+  const servicesField =
+    document.querySelector(
+      `[data-edit-services="${id}"]`
+    );
+
+
+  if(!businessField || !categoryField){
+
+    return;
+
+  }
+
+
+  const businessName =
+    businessField.value.trim();
+
+  const category =
+    categoryField.value.trim();
+
+
+  if(!businessName || !category){
+
+    providerMessage.innerHTML =
+      '<div class="error">' +
+      'Business Name and Category are required.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  const {error} =
+    await supabaseClient
+      .from('providers')
+      .update({
+
+        business_name:
+          businessName,
+
+        category:
+          category,
+
+        contact_name:
+          contactField
+            ? contactField.value.trim() || null
+            : null,
+
+        phone:
+          phoneField
+            ? phoneField.value.trim() || null
+            : null,
+
+        email:
+          emailField
+            ? emailField.value.trim().toLowerCase() || null
+            : null,
+
+        zip:
+          zipField
+            ? zipField.value.trim() || null
+            : null,
+
+        service_area:
+          areaField
+            ? areaField.value.trim() || null
+            : null,
+
+        services:
+          servicesField
+            ? servicesField.value.trim() || null
+            : null
+
+      })
+      .eq(
+        'id',
+        id
+      );
+
+
+  if(error){
+
+    providerMessage.innerHTML =
+      '<div class="error">' +
+      escapeHtml(
+        error.message
+      ) +
+      '</div>';
+
+    return;
+
+  }
+
+
+  providerMessage.innerHTML =
+    '<div class="success">' +
+    'Provider updated successfully.' +
+    '</div>';
+
+
+  await loadProviders();
+
+}
+
+
+/* ACTIVATE / DEACTIVATE */
+
+async function toggleProvider(id){
+
+  const provider =
+    providers.find(
+      item =>
+        String(item.id) ===
+        String(id)
+    );
+
+
+  if(!provider){
+
+    return;
+
+  }
+
+
+  const newStatus =
+    provider.active === false;
+
+
+  const {error} =
+    await supabaseClient
+      .from('providers')
+      .update({
+
+        active:
+          newStatus
+
+      })
+      .eq(
+        'id',
+        id
+      );
+
+
+  if(error){
+
+    providerMessage.innerHTML =
+      '<div class="error">' +
+      escapeHtml(
+        error.message
+      ) +
+      '</div>';
+
+    return;
+
+  }
+
+
+  providerMessage.innerHTML =
+    '<div class="success">' +
+    (
+      newStatus
+        ? 'Provider activated.'
+        : 'Provider deactivated.'
+    ) +
+    '</div>';
+
+
+  await loadProviders();
+
+}
+
+
+/* DELETE PROVIDER */
+
+async function deleteProvider(id){
+
+  const provider =
+    providers.find(
+      item =>
+        String(item.id) ===
+        String(id)
+    );
+
+
+  if(!provider){
+
+    return;
+
+  }
+
+
+  const confirmed =
+    window.confirm(
+      'Delete "' +
+      (
+        provider.business_name ||
+        'this provider'
+      ) +
+      '" permanently?'
+    );
+
+
+  if(!confirmed){
+
+    return;
+
+  }
+
+
+  const {error} =
+    await supabaseClient
+      .from('providers')
+      .delete()
+      .eq(
+        'id',
+        id
+      );
+
+
+  if(error){
+
+    providerMessage.innerHTML =
+      '<div class="error">' +
+      escapeHtml(
+        error.message
+      ) +
+      '</div>';
+
+    return;
+
+  }
+
+
+  providerMessage.innerHTML =
+    '<div class="success">' +
+    'Provider deleted successfully.' +
+    '</div>';
+
+
+  await loadProviders();
+
+}
+
+
 /* LOG OUT */
 
 logoutBtn.addEventListener(
@@ -1583,20 +3276,25 @@ logoutBtn.addEventListener(
 
     await supabaseClient.auth.signOut();
 
+
     dashboard.classList.add(
       'hidden'
     );
+
 
     loginSection.classList.remove(
       'hidden'
     );
 
+
     logoutBtn.classList.add(
       'hidden'
     );
 
+
     loginBtn.disabled =
       false;
+
 
     loginBtn.textContent =
       'Sign In';
@@ -1634,8 +3332,11 @@ function escapeHtml(value){
 function formatDate(value){
 
   if(!value){
+
     return '';
+
   }
+
 
   return new Date(value)
     .toLocaleString();
@@ -1646,7 +3347,9 @@ function formatDate(value){
 function formatDateOnly(value){
 
   if(!value){
+
     return '';
+
   }
 
 
@@ -1655,7 +3358,9 @@ function formatDateOnly(value){
 
 
   if(parts.length !== 3){
+
     return String(value);
+
   }
 
 
