@@ -81,17 +81,25 @@ label{
 }
 
 input,
-select{
+select,
+textarea{
   width:100%;
   border:1px solid #cfd6e2;
   border-radius:9px;
   padding:12px;
   font-size:16px;
   background:#fff;
+  font-family:inherit;
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
 }
 
 input:focus,
-select:focus{
+select:focus,
+textarea:focus{
   outline:2px solid #c7d2fe;
   border-color:#6366f1;
 }
@@ -238,6 +246,22 @@ select:focus{
   margin-bottom:4px;
 }
 
+.notes-section{
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid #edf0f5;
+}
+
+.notes-grid{
+  display:grid;
+  grid-template-columns:1fr 220px;
+  gap:15px;
+}
+
+.notes-label{
+  margin-top:0;
+}
+
 .lead-actions{
   margin-top:18px;
   display:flex;
@@ -245,15 +269,25 @@ select:focus{
   flex-wrap:wrap;
 }
 
-.empty{
-  text-align:center;
-  color:#7c8797;
-  padding:40px;
+.save-btn{
+  background:#111827;
+  color:#fff;
+  border-color:#111827;
+}
+
+.save-btn:hover{
+  background:#1f2937;
 }
 
 .small{
   font-size:12px;
   color:#7c8797;
+}
+
+.empty{
+  text-align:center;
+  color:#7c8797;
+  padding:40px;
 }
 
 @media(max-width:800px){
@@ -267,6 +301,10 @@ select:focus{
   }
 
   .toolbar{
+    grid-template-columns:1fr;
+  }
+
+  .notes-grid{
     grid-template-columns:1fr;
   }
 
@@ -394,54 +432,38 @@ select:focus{
   <div class="stats">
 
     <div class="stat">
-
       <span class="stat-label">
         Total Leads
       </span>
 
-      <b id="total">
-        0
-      </b>
-
+      <b id="total">0</b>
     </div>
 
 
     <div class="stat">
-
       <span class="stat-label">
         New
       </span>
 
-      <b id="newCount">
-        0
-      </b>
-
+      <b id="newCount">0</b>
     </div>
 
 
     <div class="stat">
-
       <span class="stat-label">
         Qualified
       </span>
 
-      <b id="qualified">
-        0
-      </b>
-
+      <b id="qualified">0</b>
     </div>
 
 
     <div class="stat">
-
       <span class="stat-label">
         Sold
       </span>
 
-      <b id="sold">
-        0
-      </b>
-
+      <b id="sold">0</b>
     </div>
 
   </div>
@@ -484,7 +506,6 @@ select:focus{
 
     <div id="message"></div>
 
-
     <div id="rows"></div>
 
   </div>
@@ -492,13 +513,11 @@ select:focus{
 </main>
 
 
+<!-- SUPABASE -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
-/* --------------------------------
-   SUPABASE
--------------------------------- */
 
 const SUPABASE_URL =
   'https://gbhyyvokowulxyqcbqvp.supabase.co';
@@ -509,9 +528,8 @@ const SUPABASE_ANON_KEY =
 
 /*
   IMPORTANT:
-  We call our client "supabaseClient"
-  instead of "supabase" so it does not
-  conflict with the Supabase library.
+  We use "supabaseClient" instead of "supabase"
+  so it does not conflict with the Supabase library.
 */
 
 const supabaseClient =
@@ -526,49 +544,31 @@ const supabaseClient =
 -------------------------------- */
 
 const loginSection =
-  document.getElementById(
-    'loginSection'
-  );
+  document.getElementById('loginSection');
 
 const dashboard =
-  document.getElementById(
-    'dashboard'
-  );
+  document.getElementById('dashboard');
 
 const loginBtn =
-  document.getElementById(
-    'loginBtn'
-  );
+  document.getElementById('loginBtn');
 
 const logoutBtn =
-  document.getElementById(
-    'logoutBtn'
-  );
+  document.getElementById('logoutBtn');
 
 const loginError =
-  document.getElementById(
-    'loginError'
-  );
+  document.getElementById('loginError');
 
 const search =
-  document.getElementById(
-    'search'
-  );
+  document.getElementById('search');
 
 const statusFilter =
-  document.getElementById(
-    'statusFilter'
-  );
+  document.getElementById('statusFilter');
 
 const rows =
-  document.getElementById(
-    'rows'
-  );
+  document.getElementById('rows');
 
 const message =
-  document.getElementById(
-    'message'
-  );
+  document.getElementById('message');
 
 
 let leads = [];
@@ -598,9 +598,7 @@ async function login(){
       .value;
 
 
-  loginError.classList.add(
-    'hidden'
-  );
+  loginError.classList.add('hidden');
 
 
   if(!email || !password){
@@ -608,9 +606,7 @@ async function login(){
     loginError.textContent =
       'Please enter your email and password.';
 
-    loginError.classList.remove(
-      'hidden'
-    );
+    loginError.classList.remove('hidden');
 
     return;
   }
@@ -637,9 +633,7 @@ async function login(){
     loginError.textContent =
       error.message;
 
-    loginError.classList.remove(
-      'hidden'
-    );
+    loginError.classList.remove('hidden');
 
     loginBtn.disabled = false;
 
@@ -696,17 +690,11 @@ supabaseClient.auth
 
 async function showDashboard(){
 
-  loginSection.classList.add(
-    'hidden'
-  );
+  loginSection.classList.add('hidden');
 
-  dashboard.classList.remove(
-    'hidden'
-  );
+  dashboard.classList.remove('hidden');
 
-  logoutBtn.classList.remove(
-    'hidden'
-  );
+  logoutBtn.classList.remove('hidden');
 
   await loadLeads();
 
@@ -830,7 +818,9 @@ function renderLeads(){
 
         lead.budget,
 
-        lead.timeline
+        lead.timeline,
+
+        lead.notes
 
       ]
       .filter(Boolean)
@@ -840,9 +830,7 @@ function renderLeads(){
 
       const matchesSearch =
         !searchText ||
-        searchable.includes(
-          searchText
-        );
+        searchable.includes(searchText);
 
 
       const matchesStatus =
@@ -876,9 +864,7 @@ function renderLeads(){
 
 
   document
-    .querySelectorAll(
-      '[data-advance-id]'
-    )
+    .querySelectorAll('[data-advance-id]')
     .forEach(function(button){
 
       button.addEventListener(
@@ -887,6 +873,24 @@ function renderLeads(){
 
           advanceLead(
             button.dataset.advanceId
+          );
+
+        }
+      );
+
+    });
+
+
+  document
+    .querySelectorAll('[data-save-id]')
+    .forEach(function(button){
+
+      button.addEventListener(
+        'click',
+        function(){
+
+          saveLead(
+            button.dataset.saveId
           );
 
         }
@@ -914,6 +918,14 @@ function renderLead(lead){
       : lead.status === 'qualified'
         ? 'Mark Sold'
         : 'Reopen';
+
+
+  const followUp =
+    lead.follow_up_date || '';
+
+
+  const notes =
+    lead.notes || '';
 
 
   return `
@@ -949,12 +961,10 @@ function renderLead(lead){
 
 
       <div class="request">
-
         ${escapeHtml(
           lead.request ||
           'No request provided'
         )}
-
       </div>
 
 
@@ -1074,16 +1084,71 @@ function renderLead(lead){
       </div>
 
 
-      <div class="lead-actions">
+      <!-- NOTES + FOLLOW UP -->
 
-        <button
-          class="btn"
-          data-advance-id="${escapeHtml(
-            lead.id
-          )}"
-        >
-          ${nextLabel}
-        </button>
+      <div class="notes-section">
+
+        <div class="notes-grid">
+
+
+          <div>
+
+            <label
+              class="notes-label"
+              for="notes-${escapeHtml(lead.id)}"
+            >
+              Lead Notes
+            </label>
+
+            <textarea
+              id="notes-${escapeHtml(lead.id)}"
+              data-notes-id="${escapeHtml(lead.id)}"
+              placeholder="Add notes about calls, estimates, customer needs, provider conversations, etc."
+            >${escapeHtml(notes)}</textarea>
+
+          </div>
+
+
+          <div>
+
+            <label
+              class="notes-label"
+              for="follow-${escapeHtml(lead.id)}"
+            >
+              Follow-Up Date
+            </label>
+
+            <input
+              id="follow-${escapeHtml(lead.id)}"
+              type="date"
+              value="${escapeHtml(followUp)}"
+              data-follow-id="${escapeHtml(lead.id)}"
+            >
+
+          </div>
+
+
+        </div>
+
+
+        <div class="lead-actions">
+
+          <button
+            class="btn save-btn"
+            data-save-id="${escapeHtml(lead.id)}"
+          >
+            Save Lead
+          </button>
+
+
+          <button
+            class="btn"
+            data-advance-id="${escapeHtml(lead.id)}"
+          >
+            ${nextLabel}
+          </button>
+
+        </div>
 
       </div>
 
@@ -1096,14 +1161,102 @@ function renderLead(lead){
 
 
 /* --------------------------------
-   ADVANCE LEAD
+   SAVE NOTES + FOLLOW-UP
+-------------------------------- */
+
+async function saveLead(id){
+
+  const notesElement =
+    document.querySelector(
+      `[data-notes-id="${id}"]`
+    );
+
+
+  const followElement =
+    document.querySelector(
+      `[data-follow-id="${id}"]`
+    );
+
+
+  if(!notesElement || !followElement){
+
+    return;
+  }
+
+
+  const notes =
+    notesElement.value.trim();
+
+
+  const followUpDate =
+    followElement.value || null;
+
+
+  const {error} =
+    await supabaseClient
+      .from('leads')
+      .update({
+
+        notes: notes || null,
+
+        follow_up_date: followUpDate
+
+      })
+      .eq(
+        'id',
+        id
+      );
+
+
+  if(error){
+
+    message.innerHTML =
+      '<div class="error">' +
+      escapeHtml(
+        error.message
+      ) +
+      '</div>';
+
+    return;
+  }
+
+
+  message.innerHTML =
+    '<div class="success">' +
+    'Lead notes and follow-up date saved.' +
+    '</div>';
+
+
+  const lead =
+    leads.find(
+      item =>
+        String(item.id) === String(id)
+    );
+
+
+  if(lead){
+
+    lead.notes =
+      notes || null;
+
+    lead.follow_up_date =
+      followUpDate;
+
+  }
+
+}
+
+
+/* --------------------------------
+   ADVANCE LEAD STATUS
 -------------------------------- */
 
 async function advanceLead(id){
 
   const lead =
     leads.find(
-      item => String(item.id) === String(id)
+      item =>
+        String(item.id) === String(id)
     );
 
 
