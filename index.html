@@ -117,6 +117,64 @@ footer .footer-logo{color:#fff}
 }
 .hero-inner{position:relative;z-index:1}
 .hero-benefits{position:relative;z-index:1}
+
+/* Final homepage layout pass: match the approved full-width Pittsburgh banner */
+.hero{
+ background:
+ linear-gradient(90deg,rgba(3,4,12,.76) 0%,rgba(3,4,12,.48) 48%,rgba(3,4,12,.12) 100%),
+ url('https://images.unsplash.com/photo-1646340593658-16af59ea3fc1?auto=format&fit=crop&fm=jpg&q=90&w=2600')
+ center 52%/cover no-repeat !important;
+ min-height:0;
+}
+.hero-inner{
+ width:min(1560px,calc(100% - 64px));
+ min-height:535px;
+ padding:34px 0 14px;
+ grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+ gap:24px;
+}
+.hero-copy-block{max-width:780px;padding:0 0 8px}
+.hero h1{font-size:clamp(48px,5.4vw,82px);letter-spacing:-3.5px;margin:0 0 14px}
+.hero-subtitle{font-size:clamp(18px,2vw,26px);margin:0 0 28px}
+.quick-search{max-width:760px;padding:15px;border-radius:20px;background:rgba(5,5,5,.94)}
+.quick-search select,.quick-search input{height:62px;font-size:16px}
+.quick-row{grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.quick-row button{font-size:21px}
+.shop-local-hero{max-width:720px;margin-top:16px;min-height:82px;padding:15px 20px;border-radius:16px}
+.shop-local-hero>span:first-child{font-size:30px}
+.shop-local-hero strong{font-size:18px}
+.shop-local-hero small{font-size:14px}
+.visual{min-height:470px;padding:0;justify-content:center}
+.mascot-hero{width:100%;height:470px;max-height:470px;object-fit:contain;object-position:center;border:0;border-radius:0;box-shadow:none;filter:drop-shadow(0 14px 20px rgba(0,0,0,.55))}
+.hero-benefits{width:min(1400px,calc(100% - 80px));padding:8px 0 30px;gap:34px}
+.hero-benefits strong{font-size:25px}
+.hero-benefits small{font-size:16px}
+.steps{background:#101010}
+.steps-inner{width:min(1400px,calc(100% - 80px));padding:30px 0}
+.step-num{width:42px;height:42px;font-size:16px}
+.step strong{font-size:16px}
+.step small{font-size:13px}
+@media(max-width:850px){
+ .hero-inner{width:calc(100% - 36px);min-height:0;grid-template-columns:1fr;padding:38px 0 12px;gap:12px}
+ .hero h1{white-space:normal;font-size:clamp(42px,9vw,62px)}
+ .visual{min-height:0}
+ .mascot-hero{height:auto;max-height:360px;width:min(100%,560px)}
+ .hero-benefits{width:calc(100% - 36px)}
+ .steps-inner{width:calc(100% - 36px)}
+}
+@media(max-width:600px){
+ .hero-inner{width:calc(100% - 28px);padding:30px 0 8px}
+ .hero h1{font-size:42px;letter-spacing:-1.8px}
+ .quick-search{padding:10px}
+ .quick-search select,.quick-search input{height:54px;font-size:14px}
+ .quick-row{grid-template-columns:1fr}
+ .quick-row button{min-height:54px;font-size:18px}
+ .shop-local-hero{min-height:72px;padding:12px}
+ .mascot-hero{max-height:275px}
+ .hero-benefits{width:calc(100% - 28px)}
+ .steps-inner{width:calc(100% - 28px)}
+}
+
 </style>
 </head>
 <body id="top">
