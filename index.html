@@ -175,6 +175,85 @@ footer .footer-logo{color:#fff}
  .steps-inner{width:calc(100% - 28px)}
 }
 
+
+/* Screenshot-matched homepage: Pittsburgh night hero, bold yellow search panel, Ditty on right */
+:root{--ink:#090909;--purple:#e8c900;--purple2:#f6df00;--line:#d9bf00;--soft:#fff8d8}
+.topbar{height:82px;background:#050505;border-bottom:2px solid #d9c300;color:#fff}
+.nav{width:calc(100% - 64px);max-width:1540px}
+.logo,.brand-words strong{color:#fff}
+.brand-words strong,.brand-words b{font-size:25px;line-height:1.02}
+.brand-words b{color:#f2d400}
+.nav-right{gap:28px;color:#fff;font-size:16px;font-weight:650}
+.nav-cta{background:#f2d400;color:#050505;padding:16px 27px;border-radius:32px}
+.hero{
+ color:#fff;
+ background:
+ linear-gradient(90deg,rgba(3,4,13,.25),rgba(3,4,13,.08)),
+ url('https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Pittsburgh_skyline_panorama_at_night.jpg/3840px-Pittsburgh_skyline_panorama_at_night.jpg')
+ center 52%/cover no-repeat !important;
+ border-bottom:5px solid #e4cc00;
+}
+.hero-inner{
+ width:calc(100% - 64px);max-width:1540px;
+ min-height:575px;padding:28px 0 8px;
+ grid-template-columns:minmax(0,1fr) minmax(0,.98fr);
+ gap:22px;align-items:center;
+}
+.hero-copy-block{padding:0 0 4px;max-width:800px}
+.hero h1{font-size:clamp(54px,5.2vw,88px);line-height:1;letter-spacing:-3.2px;white-space:nowrap;margin:0 0 20px}
+.hero h1 em{font-family:Georgia,serif;font-style:italic;color:#f2d400}
+.hero-subtitle{font-size:clamp(20px,2vw,30px);font-weight:850;color:#fff;margin:0 0 36px}
+.quick-search{max-width:790px;padding:17px;background:rgba(4,4,4,.94);border:3px solid #f2d400;border-radius:23px;box-shadow:0 12px 30px rgba(0,0,0,.45)}
+.quick-search select,.quick-search input{height:68px;background:#faf9f2;color:#111;border:0;border-radius:13px;font-size:18px;font-weight:800;padding:0 20px}
+.quick-row{grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.zip-wrap{background:#faf9f2!important;border-radius:13px;padding:0 18px!important}
+.zip-wrap input{font-size:18px!important}
+.quick-row button{background:#f2d400;color:#050505;border-radius:13px;font-size:28px;font-weight:950;padding:10px 18px}
+.shop-local-hero{max-width:790px;margin-top:16px;min-height:108px;padding:18px 24px;border:2px solid #f2d400;border-radius:20px;background:rgba(5,5,0,.83);gap:18px}
+.shop-local-hero>span:first-child{font-size:42px}
+.shop-local-hero strong{font-size:26px;color:#f2d400}
+.shop-local-hero small{font-size:18px;color:#fff;margin-top:4px}
+.shop-local-hero>b{font-size:42px;color:#f2d400}
+.visual{min-height:570px;padding:0;justify-content:center;align-items:center}
+.mascot-hero{width:100%;height:570px;max-height:570px;object-fit:contain;object-position:center;border:0;border-radius:0;box-shadow:none;filter:drop-shadow(0 12px 16px rgba(0,0,0,.4))}
+.hero-benefits{width:calc(100% - 100px);max-width:1420px;padding:12px 0 28px;gap:34px}
+.hero-benefits>div{gap:22px}
+.hero-benefits>i{height:82px;width:3px;background:#e6ca00}
+.benefit-symbol{font-size:74px;color:#f2d400}
+.hero-benefits strong{font-size:34px;line-height:1.1}
+.hero-benefits small{font-size:20px;color:#fff;margin-top:6px}
+.steps{background:#101010;border-bottom:1px solid #d7bd00;color:#fff}
+.steps-inner{width:calc(100% - 100px);max-width:1420px;padding:32px 0}
+.step{gap:18px}
+.step-num{width:54px;height:54px;border-radius:14px;background:#f2d400;color:#090909;font-size:22px}
+.step strong{font-size:19px;color:#fff}
+.step small{font-size:16px;color:#fff;margin-top:6px}
+@media(max-width:900px){
+ .nav{width:calc(100% - 32px)}.nav-right{gap:12px}.nav-right span{display:none}
+ .hero-inner{width:calc(100% - 36px);min-height:0;grid-template-columns:1fr;padding:38px 0 8px;gap:10px}
+ .hero h1{white-space:normal;font-size:clamp(44px,8vw,68px)}
+ .hero-subtitle{margin-bottom:24px}
+ .visual{min-height:0}.mascot-hero{height:auto;max-height:390px;width:min(100%,600px)}
+ .hero-benefits{width:calc(100% - 36px);grid-template-columns:1fr;gap:14px;padding:16px 0 24px}
+ .hero-benefits>i{height:1px;width:100%}.hero-benefits>div{gap:16px}
+ .benefit-symbol{font-size:42px}.hero-benefits strong{font-size:22px}.hero-benefits small{font-size:15px}
+ .steps-inner{width:calc(100% - 36px);grid-template-columns:1fr;gap:18px}
+}
+@media(max-width:600px){
+ .topbar{height:72px}.brand-words strong,.brand-words b{font-size:20px}
+ .nav-right{font-size:12px;gap:9px}.nav-cta{padding:11px 13px}
+ .hero-inner{width:calc(100% - 28px);padding:30px 0 8px}
+ .hero h1{font-size:43px;letter-spacing:-1.7px}.hero-subtitle{font-size:17px}
+ .quick-search{padding:10px;border-radius:16px}
+ .quick-search select,.quick-search input{height:55px;font-size:14px;padding:0 12px}
+ .quick-row{grid-template-columns:1fr;gap:9px;margin-top:9px}
+ .quick-row button{font-size:19px;min-height:54px}
+ .shop-local-hero{min-height:76px;padding:12px;border-radius:13px}
+ .shop-local-hero>span:first-child{font-size:28px}.shop-local-hero strong{font-size:18px}.shop-local-hero small{font-size:12px}.shop-local-hero>b{font-size:27px}
+ .mascot-hero{max-height:285px}
+ .hero-benefits,.steps-inner{width:calc(100% - 28px)}
+}
+
 </style>
 </head>
 <body id="top">
