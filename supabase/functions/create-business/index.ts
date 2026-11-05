@@ -14,7 +14,7 @@ Deno.serve(async(req:Request)=>{
  const admin=createClient(url,secret,{auth:{persistSession:false,autoRefreshToken:false}});
  if(req.method==="GET"){const {data,error}=await admin.from("businesses").select("id,name,slug,status,email,phone,created_at,providers(id,business_name,category,active)").order("created_at",{ascending:false});return error?reply({error:error.message},400):reply({businesses:data??[]});}
  let body:Record<string,unknown>;try{body=await req.json()}catch{return reply({error:"Invalid JSON"},400)}
- const name=String(body.business_name??"").trim(),category=String(body.category??"").trim(),email=String(body.owner_email??"").trim().toLowerCase(),phone=String(body.phone??"").trim(),zip=String(body.zip??"").trim(),area=String(body.service_area??"").trim(),services=String(body.services??"").trim();
+ const name=String(body.business_name??"").trim(),category=String(body.category??"").trim(),email=String(body.owner_email??"").trim().toLowerCase(),phone=String(body.phone??"").trim(),zip=String(body.zip??"").trim(),area=String(body.service_area??"").trim(),services=String(body.services??"").trim(),radiusRaw=Number(body.service_radius_miles??55),radius=Number.isInteger(radiusRaw)&&radiusRaw>=1&&radiusRaw<=250?radiusRaw:55;
  if(!name||!category||!email||! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return reply({error:"Business name, valid owner email, and category are required."},400);
  const slug=name.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,48)+"-"+crypto.randomUUID().slice(0,8);
  const {data:business,error:be}=await admin.from("businesses").insert({name,slug,status:"active",email,phone}).select("id,name,slug").single();
@@ -23,7 +23,7 @@ Deno.serve(async(req:Request)=>{
  if(ie||!invite.user){await admin.from("businesses").delete().eq("id",business.id);return reply({error:ie?.message??"Invitation failed"},400)}
  const {error:me}=await admin.from("business_members").insert({business_id:business.id,user_id:invite.user.id,role:"owner"});
  if(me){await admin.auth.admin.deleteUser(invite.user.id);await admin.from("businesses").delete().eq("id",business.id);return reply({error:me.message},400)}
- const {error:pe}=await admin.from("providers").insert({business_id:business.id,business_name:name,category,email,phone,zip:zip||null,service_area:area||null,services:services||null,active:true});
+ const {error:pe}=await admin.from("providers").insert({business_id:business.id,business_name:name,category,email,phone,zip:zip||null,service_area:area||null,services:services||null,service_radius_miles:radius,active:true});
  if(pe){await admin.from("business_members").delete().eq("business_id",business.id);await admin.auth.admin.deleteUser(invite.user.id);await admin.from("businesses").delete().eq("id",business.id);return reply({error:pe.message},400)}
  return reply({success:true,business,invited_email:email,message:"Business created and invitation sent."},201);
 });
