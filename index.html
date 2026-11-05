@@ -254,6 +254,78 @@ footer .footer-logo{color:#fff}
  .hero-benefits,.steps-inner{width:calc(100% - 28px)}
 }
 
+
+/* Desktop composition aligned to the supplied 1724px reference screenshot */
+.topbar{height:84px;background:#050505;border-bottom:2px solid #e3c900}
+.nav{width:calc(100% - 72px)!important;max-width:none!important}
+.logo{font-size:25px;line-height:1.02}
+.brand-words strong,.brand-words b{font-size:25px}
+.nav-right{gap:30px;font-size:16px;color:#fff}
+.nav-cta{padding:16px 28px;background:#f2d400;color:#050505;font-size:16px}
+.hero{
+ background:
+ linear-gradient(90deg,rgba(5,4,18,.34) 0%,rgba(5,4,18,.12) 58%,rgba(5,4,18,.08) 100%),
+ url('https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Pittsburgh_skyline_panorama_at_night.jpg/3840px-Pittsburgh_skyline_panorama_at_night.jpg')
+ center 52%/cover no-repeat!important;
+ color:#fff;border-bottom:5px solid #e2c900
+}
+.hero-inner{
+ width:calc(100% - 64px)!important;max-width:none!important;
+ min-height:590px;padding:24px 0 8px;
+ grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:26px;
+ align-items:center
+}
+.hero-copy-block{max-width:none;padding:0 0 6px}
+.hero h1{font-size:clamp(58px,5.2vw,88px);letter-spacing:-3px;line-height:1;margin:0 0 20px;white-space:nowrap}
+.hero h1 em{font-family:Georgia,serif;font-style:italic;color:#f2d400}
+.hero-subtitle{font-size:clamp(22px,2vw,30px);line-height:1.2;margin:0 0 34px;color:#fff;font-weight:850}
+.quick-search{max-width:100%;width:100%;padding:18px;border:3px solid #f2d400;border-radius:22px;background:rgba(5,5,5,.94)}
+.quick-search select,.quick-search input{height:68px;border-radius:13px;background:#faf9f2;color:#111;font-size:18px;font-weight:800;padding:0 20px}
+.quick-row{grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.quick-row button{background:#f2d400;color:#080808;border-radius:13px;font-size:27px;font-weight:950;min-height:68px}
+.zip-wrap{background:#faf9f2!important;border-radius:13px;padding:0 18px!important}
+.zip-wrap input{font-size:18px!important}
+.shop-local-hero{max-width:100%;width:100%;min-height:108px;padding:18px 24px;margin-top:16px;border:2px solid #f2d400;border-radius:20px;background:rgba(5,5,5,.87)}
+.shop-local-hero>span:first-child{font-size:42px}
+.shop-local-hero strong{font-size:26px;color:#f2d400}
+.shop-local-hero small{font-size:18px;color:#fff}
+.shop-local-hero>b{font-size:42px;color:#f2d400}
+.visual{min-height:550px;padding:0;display:flex;align-items:center;justify-content:center}
+.mascot-hero{width:100%;height:550px;max-height:550px;object-fit:contain;object-position:center;border:0;border-radius:0;box-shadow:none;filter:drop-shadow(0 16px 18px rgba(0,0,0,.45))}
+.hero-benefits{width:calc(100% - 100px);max-width:none;padding:10px 0 28px;gap:32px}
+.hero-benefits>div{gap:22px}
+.hero-benefits>i{height:82px;width:3px;background:#e2c900}
+.benefit-symbol{font-size:74px;color:#f2d400}
+.hero-benefits strong{font-size:34px;line-height:1.1}
+.hero-benefits small{font-size:20px;color:#fff;margin-top:6px}
+.steps{background:#101010;border-bottom:1px solid #d9bf00}
+.steps-inner{width:calc(100% - 100px);max-width:none;padding:32px 0;gap:35px}
+.step{gap:18px}
+.step-num{width:54px;height:54px;border-radius:14px;background:#f2d400;color:#080808;font-size:22px}
+.step strong{font-size:19px;color:#fff}
+.step small{font-size:16px;color:#fff;margin-top:6px}
+@media(max-width:900px){
+ .nav{width:calc(100% - 32px)!important}.nav-right{gap:12px;font-size:13px}
+ .hero-inner{width:calc(100% - 36px)!important;min-height:0;grid-template-columns:1fr;padding:36px 0 8px;gap:12px}
+ .hero h1{white-space:normal;font-size:clamp(46px,8vw,68px)}
+ .visual{min-height:0}.mascot-hero{height:auto;max-height:420px;width:min(100%,620px)}
+ .hero-benefits{width:calc(100% - 36px);grid-template-columns:1fr;gap:14px;padding:18px 0 24px}
+ .hero-benefits>i{height:1px;width:100%}.hero-benefits>div{gap:16px}
+ .benefit-symbol{font-size:44px}.hero-benefits strong{font-size:22px}.hero-benefits small{font-size:15px}
+ .steps-inner{width:calc(100% - 36px);grid-template-columns:1fr;gap:18px}
+}
+@media(max-width:600px){
+ .topbar{height:72px}.nav{width:calc(100% - 24px)!important}
+ .logo,.brand-words strong,.brand-words b{font-size:20px}.nav-right{gap:8px;font-size:11px}.nav-cta{padding:10px 12px}
+ .hero-inner{width:calc(100% - 28px)!important;padding:28px 0 8px}
+ .hero h1{font-size:42px;letter-spacing:-1.5px}.hero-subtitle{font-size:17px;margin-bottom:22px}
+ .quick-search{padding:10px}.quick-search select,.quick-search input{height:55px;font-size:14px;padding:0 12px}
+ .quick-row{grid-template-columns:1fr;gap:9px;margin-top:9px}.quick-row button{min-height:55px;font-size:19px}
+ .shop-local-hero{min-height:76px;padding:12px;border-radius:13px}
+ .shop-local-hero>span:first-child{font-size:28px}.shop-local-hero strong{font-size:18px}.shop-local-hero small{font-size:12px}.shop-local-hero>b{font-size:27px}
+ .mascot-hero{max-height:290px}.hero-benefits,.steps-inner{width:calc(100% - 28px)}
+}
+
 </style>
 </head>
 <body id="top">
