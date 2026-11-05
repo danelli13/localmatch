@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 700">
+<defs><linearGradient id="fur" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#d9d9d9"/></linearGradient><linearGradient id="lens" x2="1" y2="1"><stop stop-color="#dff6ff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity=".18"/></linearGradient></defs>
+<ellipse cx="390" cy="640" rx="250" ry="28" fill="#000" opacity=".2"/>
+<!-- body and paws -->
+<path d="M185 605 Q145 520 188 415 Q225 335 360 340 Q520 330 575 440 Q620 535 565 620Z" fill="url(#fur)" stroke="#171717" stroke-width="13"/>
+<path d="M212 430 Q250 390 300 423 Q328 463 285 502 Q238 520 205 485Z" fill="#171717"/>
+<path d="M452 370 Q510 365 540 415 Q555 455 515 478 Q465 472 444 430Z" fill="#171717"/>
+<path d="M275 575 Q325 540 370 578 Q393 616 350 630 L260 630Q235 612 275 575Z" fill="#fff" stroke="#171717" stroke-width="12"/>
+<path d="M430 570 Q480 540 525 580 Q550 612 510 630 L420 630Q395 610 430 570Z" fill="#fff" stroke="#171717" stroke-width="12"/>
+<!-- neck and blue collar -->
+<path d="M210 400 Q375 470 555 390 L570 445 Q385 520 198 450Z" fill="#1675d1" stroke="#171717" stroke-width="12"/>
+<path d="M360 458 Q390 448 420 458 L416 500 Q390 512 364 498Z" fill="#bfc5ca" stroke="#171717" stroke-width="7"/>
+<text x="390" y="488" font-family="Arial,sans-serif" font-size="23" font-weight="900" text-anchor="middle" fill="#252525">DITTY</text>
+<!-- head -->
+<path d="M165 285 Q145 155 245 95 Q355 25 480 90 Q585 145 590 280 Q595 390 480 435 Q350 485 235 418 Q155 370 165 285Z" fill="url(#fur)" stroke="#171717" stroke-width="14"/>
+<!-- ears -->
+<path d="M190 210 Q90 100 85 265 Q80 375 205 365Z" fill="#171717" stroke="#171717" stroke-width="13"/>
+<path d="M515 190 Q625 70 665 235 Q690 340 570 375Z" fill="#171717" stroke="#171717" stroke-width="13"/>
+<!-- patches -->
+<path d="M250 115 Q315 65 355 115 Q370 175 325 205 Q260 210 235 170Z" fill="#171717"/>
+<path d="M455 120 Q520 105 555 175 Q560 235 495 245 Q440 225 430 175Z" fill="#171717"/>
+<path d="M205 300 Q230 260 275 275 Q300 315 265 350 Q220 365 200 330Z" fill="#171717"/>
+<!-- muzzle -->
+<path d="M265 320 Q335 260 430 300 Q490 330 475 385 Q440 430 355 423 Q265 420 245 375Z" fill="#fff" stroke="#171717" stroke-width="10"/>
+<ellipse cx="365" cy="328" rx="36" ry="25" fill="#171717"/>
+<path d="M365 350 Q350 380 322 375 M365 350 Q385 380 414 374" fill="none" stroke="#171717" stroke-width="8" stroke-linecap="round"/>
+<!-- eyes -->
+<ellipse cx="300" cy="255" rx="18" ry="24" fill="#171717"/><ellipse cx="465" cy="255" rx="18" ry="24" fill="#171717"/>
+<circle cx="306" cy="247" r="6" fill="#fff"/><circle cx="471" cy="247" r="6" fill="#fff"/>
+<!-- magnifying glass in mouth -->
+<path d="M420 368 Q485 395 535 420" fill="none" stroke="#171717" stroke-width="22" stroke-linecap="round"/>
+<circle cx="590" cy="455" r="83" fill="#c2a34a" stroke="#171717" stroke-width="14"/>
+<circle cx="590" cy="455" r="64" fill="url(#lens)" stroke="#f4e6a5" stroke-width="7"/>
+<path d="M555 422 Q590 395 620 425" fill="none" stroke="#fff" stroke-width="9" opacity=".7" stroke-linecap="round"/>
+<!-- sparkle -->
+<path d="M660 285 L674 315 L704 329 L674 343 L660 373 L646 343 L616 329 L646 315Z" fill="#f2d400"/>
+</svg>
